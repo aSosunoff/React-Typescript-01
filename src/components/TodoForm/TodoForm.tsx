@@ -10,6 +10,7 @@ const TodoForm: React.FC = () => {
   const keyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       console.log(title);
+      setTitle("");
     }
   };
 
