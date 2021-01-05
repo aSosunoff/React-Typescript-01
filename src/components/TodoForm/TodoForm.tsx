@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-const TodoForm: React.FC = () => {
+interface ITodoFprmProps {
+  onAdd(title: string): void;
+}
+
+const TodoForm: React.FC<ITodoFprmProps> = ({ onAdd }) => {
   const [title, setTitle] = useState("");
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -9,7 +13,7 @@ const TodoForm: React.FC = () => {
 
   const keyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      console.log(title);
+      onAdd(title);
       setTitle("");
     }
   };
