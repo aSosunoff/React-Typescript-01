@@ -1,7 +1,7 @@
 import React from "react";
 
-function App() {
+const App: React.FC = () => {
   return <div>1234</div>;
-}
+};
 
 export default App;
