@@ -2,6 +2,10 @@
 
 ![reacttypescript](./reacttypescript.gif)
 
+### environment
+
+> node 14.15.3
+
 ### Launch project:
 
 ```
