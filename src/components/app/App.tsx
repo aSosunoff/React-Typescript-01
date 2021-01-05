@@ -1,7 +1,15 @@
 import React from "react";
+import Navbar from "../navbar";
 
 const App: React.FC = () => {
-  return <div>1234</div>;
+  return (
+    <>
+      <Navbar />
+      <div className="container">
+        <h1>Test</h1>
+      </div>
+    </>
+  );
 };
 
 export default App;
