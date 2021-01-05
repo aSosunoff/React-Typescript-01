@@ -1,68 +1,27 @@
-import React, { useEffect, useState } from "react";
-import LocalStorage from "../../utils/LocalStorage";
-import { ITodo } from "../interfaces";
+import React from "react";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Navbar from "../navbar";
-import TodoForm from "../TodoForm";
-import TodoList from "../TodoList";
+import { AboutPage } from "../pages/AboutPage";
+import { TodosPage } from "../pages/TodosPage";
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<ITodo[]>([]);
-
-  useEffect(() => {
-    if (LocalStorage.todos) {
-      setTodos(LocalStorage.todos);
-    }
-  }, []);
-
-  useEffect(() => {
-    LocalStorage.todos = todos;
-  }, [todos]);
-
-  const addHandler = (title: string) =>
-    setTodos((prev) => [
-      {
-        title,
-        id: Date.now(),
-        completed: false,
-      },
-      ...prev,
-    ]);
-
-  const toggleHandler = (id: number) =>
-    setTodos((prev) =>
-      prev.map((element) =>
-        element.id === id
-          ? {
-              ...element,
-              completed: !element.completed,
-            }
-          : element
-      )
-    );
-
-  const removeHandler = (id: number) => {
-    const shouldRemove = window.confirm(
-      "Вы уверены, что хотите удалить элемент?"
-    );
-
-    if (shouldRemove) {
-      setTodos((prev) => prev.filter((element) => element.id !== id));
-    }
-  };
-
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
       <div className="container">
-        <TodoForm onAdd={addHandler} />
+        <Switch>
+          <Redirect exact from="/" to="/todos" />
 
-        <TodoList
-          todos={todos}
-          onRemove={removeHandler}
-          onToggle={toggleHandler}
-        />
+          <Route path="/todos">
+            <TodosPage />
+          </Route>
+
+          <Route path="/about">
+            <AboutPage />
+          </Route>
+        </Switch>
       </div>
-    </>
+    </BrowserRouter>
   );
 };
 
