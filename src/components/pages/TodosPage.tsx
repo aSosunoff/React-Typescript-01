@@ -3,6 +3,7 @@ import LocalStorage from "../../utils/LocalStorage";
 import { ITodo } from "../interfaces";
 import TodoForm from "../TodoForm";
 import TodoList from "../TodoList";
+import { info } from "../../utils/toast";
 
 export const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
@@ -18,14 +19,18 @@ export const TodosPage: React.FC = () => {
   }, [todos]);
 
   const addHandler = (title: string) =>
-    setTodos((prev) => [
-      {
-        title,
-        id: Date.now(),
-        completed: false,
-      },
-      ...prev,
-    ]);
+    setTodos((prev) => {
+      info("Элемент добавлен");
+
+      return [
+        {
+          title,
+          id: Date.now(),
+          completed: false,
+        },
+        ...prev,
+      ];
+    });
 
   const toggleHandler = (id: number) =>
     setTodos((prev) =>
@@ -45,7 +50,10 @@ export const TodosPage: React.FC = () => {
     );
 
     if (shouldRemove) {
-      setTodos((prev) => prev.filter((element) => element.id !== id));
+      setTodos((prev) => {
+        info("Элемент удалён");
+        return prev.filter((element) => element.id !== id);
+      });
     }
   };
 

@@ -7,6 +7,7 @@ export const AboutPage: React.FC = () => {
   return (
     <>
       <h1>Информация</h1>
+      
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque
         sapiente sequi molestias, voluptas exercitationem culpa reprehenderit
