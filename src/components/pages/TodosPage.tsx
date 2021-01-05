@@ -3,7 +3,7 @@ import LocalStorage from "../../utils/LocalStorage";
 import { ITodo } from "../interfaces";
 import TodoForm from "../TodoForm";
 import TodoList from "../TodoList";
-import { info } from "../../utils/toast";
+import { info, warning } from "../../utils/toast";
 
 export const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
@@ -57,6 +57,20 @@ export const TodosPage: React.FC = () => {
     }
   };
 
+  const removeAllHandler = () => {
+    const shouldRemove = window.confirm(
+      "Вы уверены, что хотите удалить все элементы?"
+    );
+
+    if (shouldRemove) {
+      setTodos((prev) => {
+        warning("Элементы удалёны");
+
+        return prev.filter((element) => !element.completed);
+      });
+    }
+  };
+
   return (
     <>
       <TodoForm onAdd={addHandler} />
@@ -66,6 +80,13 @@ export const TodosPage: React.FC = () => {
         onRemove={removeHandler}
         onToggle={toggleHandler}
       />
+
+      <button
+        className="btn waves-effect waves-light red"
+        onClick={removeAllHandler}
+      >
+        Удалить выбранные
+      </button>
     </>
   );
 };

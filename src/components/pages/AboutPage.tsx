@@ -7,7 +7,7 @@ export const AboutPage: React.FC = () => {
   return (
     <>
       <h1>Информация</h1>
-      
+
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque
         sapiente sequi molestias, voluptas exercitationem culpa reprehenderit
@@ -15,7 +15,7 @@ export const AboutPage: React.FC = () => {
         Molestiae asperiores doloribus fuga aliquid voluptatum!
       </p>
 
-      <button className="btn" onClick={() => history.push("/")}>
+      <button className="btn waves-effect waves-light blue darken-3" onClick={() => history.push("/")}>
         На главную
       </button>
     </>

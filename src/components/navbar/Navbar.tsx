@@ -5,7 +5,7 @@ const Navbar: React.FC = () => (
   <nav>
     <div className="nav-wrapper blue darken-3 px1">
       <a href="/#" className="brand-logo">
-        React + Typescript
+        Ежедневник
       </a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
