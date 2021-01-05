@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import LocalStorage from "../../utils/LocalStorage";
 import { ITodo } from "../interfaces";
 import Navbar from "../navbar";
 import TodoForm from "../TodoForm";
@@ -6,6 +7,16 @@ import TodoList from "../TodoList";
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
+
+  useEffect(() => {
+    if (LocalStorage.todos) {
+      setTodos(LocalStorage.todos);
+    }
+  }, []);
+
+  useEffect(() => {
+    LocalStorage.todos = todos;
+  }, [todos]);
 
   const addHandler = (title: string) =>
     setTodos((prev) => [
@@ -17,7 +28,7 @@ const App: React.FC = () => {
       ...prev,
     ]);
 
-  const toggleHandler = (id: number) => {
+  const toggleHandler = (id: number) =>
     setTodos((prev) =>
       prev.map((element) =>
         element.id === id
@@ -28,7 +39,6 @@ const App: React.FC = () => {
           : element
       )
     );
-  };
 
   const removeHandler = (id: number) => {
     const shouldRemove = window.confirm(
