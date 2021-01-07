@@ -4,7 +4,7 @@ import { LocalStorage } from "../../utils/LocalStorage.js";
 import { ITodo } from "../interfaces";
 import TodoForm from "../TodoForm";
 import TodoList from "../TodoList";
-import { info, warning } from "../../utils/toast";
+import { info, warning } from "../../utils/toast.js";
 
 export const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
