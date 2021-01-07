@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import LocalStorage from "../../utils/LocalStorage";
+
+import { LocalStorage } from "../../utils/LocalStorage.js";
 import { ITodo } from "../interfaces";
 import TodoForm from "../TodoForm";
 import TodoList from "../TodoList";
